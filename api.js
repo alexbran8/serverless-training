@@ -16,12 +16,13 @@ const getPost = async (event) => {
             TableName: process.env.DYNAMODB_TABLE_NAME,
             Key: marshall({ postId: event.pathParameters.postId }),
         };
-        const { Item } = await db.send(new GetItemCommand(params));
+        // const { Item } = await db.send(new GetItemCommand(params));
+        const  Item  = {id: 2, name:'X'};
 
         console.log({ Item });
         response.body = JSON.stringify({
             message: "Successfully retrieved post.",
-            data: (Item) ? unmarshall(Item) : {},
+            // data: (Item) ? unmarshall(Item) : {Item},
             rawData: Item,
         });
     } catch (e) {
